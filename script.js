@@ -4,38 +4,35 @@ Ellers → "Det er en ukedag."*/
 
 
 let dag = 0
-let dagenEr = ''
-
 
 updateView()
 function updateView() {
     document.getElementById('helgeSjekk').innerHTML = /*HTML*/ `
     
-    <div>Hva slags dag er det?</div>
+    <div>Hva slags type dag er det?</div>
     <br>
     <div>Mandag - Fredag: 1 - 5</div>
     <div>Lørdag og Søndag: 6 og 7</div>
     <br>
     Sjekk dag: <input onchange= "dagInput(this.value)">
-    <button onclick= "submitDag()">Submit</button>
-    <div>Det er: ${dagenEr}</div>
+    <div>Det er: ${showMessage()}</div>
     `
 }
 
 function dagInput(verdi) {
     dag = Number(verdi)
+    updateView()
+    console.log (verdi)
 }
 
-function dagSjekk(typeDag) {
-    if (typeDag <= 5) {
+function showMessage() {
+    if (dag === 0){
+        return ""
+    }
+    if (dag <= 5) {
         return "Det er en ukedag."
     }
     else {
         return "Det er helg!"
     }
-}
-
-function submitDag() {
-dagenEr = dagSjekk(dag)
-updateView()
 }
